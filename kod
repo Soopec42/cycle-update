@@ -1,0 +1,58 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Xml.Linq;
+using System.Runtime.Remoting.Messaging;
+
+namespace кс2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Behaviour[] behaviours =
+            {
+                new Walker(),
+                new Jumper()
+            };
+
+            while (true)
+            {
+                foreach (var behaviour in behaviours)
+                {
+                    behaviour.Update();
+                    System.Threading.Thread.Sleep(1000);
+
+                }
+            }
+
+        }
+    }
+
+    class Behaviour
+    {
+        public virtual void Update()
+        {
+
+        }
+    }
+
+    class Walker : Behaviour
+    {
+        public override void Update() 
+        {
+            Console.WriteLine("going");
+        }
+    }
+    class Jumper : Behaviour
+    {
+        public override void Update()
+        {
+            Console.WriteLine("jumping");
+        }
+    }
+}
